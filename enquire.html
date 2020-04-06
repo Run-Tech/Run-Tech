@@ -84,45 +84,47 @@
                                     <form action="enquire.html">
                                         <div class="row">
                                             <div class="col-md-12 form-group">
-                                                <input type="text" name="name" class="form-control" />
+                                                <input type="text" name="name" class="form-control" placeholder="Name" required/>
                                             </div>
                                             <div class="col-md-12 form-group">
-                                                <input type="text" name="surname" class="form-control" />
+                                                <input type="text" name="surname" class="form-control" placeholder="Surname" required/>
                                             </div>
                                             <div class="col-md-12 form-group">
-                                                <input type="number" name="age" class="form-control" />
+                                                <input type="number" name="age" class="form-control" placeholder="Age" required/>
                                             </div>
                                             <div class="col-md-12 form-group">
-                                                <input type="text" name="Grade" min="1" max="9" class="form-control" />
+                                                <input type="number" name="Grade" min="1" max="9" class="form-control" placeholder="Grade e.g. 7" required/>
                                             </div>
                                             <div class="col-md-12 form-group">
-                                                <select name="level" id="level" class="form-control">
+                                                <select name="level" id="level" class="form-control" required>
+                                                    <option>-- Coding Level --</option>
                                                     <option value="novice">novice</option>
                                                     <option value="beginner">Advanced Beginner</option>
                                                     <option value="competent">Compentent</option>
                                                 </select>
                                             </div>
                                             <div class="col-md-12 form-group">
-                                                <input type="text" name="location" class="form-control" />
+                                                <input type="text" name="location" class="form-control" placeholder="Your Location" required/>
                                             </div>
                                             <div class="col-md-12 form-group">
-                                                <select name="session" id="session" class="form-control">
+                                                <select name="session" id="session" class="form-control" required>
+                                                    <option>-- Choose Day for session --</option>
                                                     <option value="saturday">Saturday</option>
                                                     <option value="sunday">Sunday</option>
                                                 </select>
                                             </div>
                                             <div class="col-md-12 form-group">
-                                                <input type="text" name="idnumber" class="form-control" />
+                                                <input type="text" name="idnumber" class="form-control" placeholder="Your ID number or Parent's ID number'" required/>
                                             </div>
                                             <div class="col-md-12 form-group">
-                                                <input type="text" name="phonenumber" class="form-control" />
+                                                <input type="text" name="phonenumber" class="form-control" placeholder="Phone Number" required/>
                                             </div>
                                             <div class="col-md-12 form-group">
-                                                <input type="email" name="email" class="form-control" />
+                                                <input type="email" name="email" class="form-control" placeholder="Email Address"/>
                                             </div>
                                             </div>
                                             <div class="col-md-12 form-group">
-                                                <input type="button" value="submit enquiry" class="form-control" />
+                                                <input type="submit" value="submit enquiry" class="form-control btn-success"/>
                                             </div>
                                         </div>
                                     </form>
