@@ -67,7 +67,7 @@
 							<li><a href="#fh5co-blog-section">Blog</a></li>
 							<li><a href="#fh5co-contact">Contact</a></li>
 							<li><a href="#footer">About</a></li>
-							<li class="btn btn-warning"><a href="enquire.html">Enquire</a></li>
+							<li><button class="btn btn-warning pull-right" onclick="document.location.href='enquire.html'">Enquire</button></li>
 						</ul>
 					</nav>
 				</div>
@@ -586,7 +586,7 @@
 								<a href="#" style="color: #ea4c89;" target="_blank"><i class="icon-dribbble2"></i></a>
 								<a href="#" style="color: #c4302b;" target="_blank"><i class="icon-youtube"></i></a>
 							</p>
-							<p>Copyright 2020; <span style="color: darkorange;">RunTech&reg;</span>. All Rights Reserved.</p>
+							<p>Copyright 2020; <span id="rt" style="color: darkorange;">RunTech&reg;</span>. All Rights Reserved.</p>
 						</div>
 					</div>
 				</div>
@@ -624,8 +624,11 @@
 	<!-- Main JS -->
 	<script src="js/main.js"></script>
 	<script type="text/javascript">
-	
+		window.onload = function () {
+			var btn = document.getElementById('rt');
+			//automatically click button
+		}
 	</script>
-
+	
 	</body>
 </html>
