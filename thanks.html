@@ -1,13 +1,4 @@
-<?php
-    if (isset($_GET['fail'])) {
-        echo '            
-            <div class="alert alert-danger label-danger alert-dismissible fade in">
-            <a href="enquire.php" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-            <strong>Oops!</strong> something went wrong, please send and email to <a href="mailto:info@run-tech.co.za" class="label label-warning">RunTech&reg;</a> for assistance.
-            </div>
-        ';
-    }
-?>
+
 <!DOCTYPE html>
 	<head>
 	<meta charset="utf-8">
@@ -57,76 +48,20 @@
                 <header id="fh5co-header-section" class="sticky-banner">
                     <div class="container">
                         <div class="nav-header">
-                            <a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle dark"><i></i></a>
-                            <h1 id="fh5co-logo"><a href="#fh5co-wrapper"><img src="images\Tech.JPG" alt="Tech" height="42" width="42"></a></h1>
+                            <h1 id="fh5co-logo"><a href="index.html"><img src="images\Tech.JPG" alt="Tech" height="42" width="42"></a></h1>
                             <!-- START #fh5co-menu-wrap -->
-                            <nav id="fh5co-menu-wrap" role="navigation">
-                                <button class="btn btn-success" onclick="document.location.href='index.html'">Done</button>
-                                <button class="btn btn-warning" style="display: none;">Administrators</button>
-                            </nav>
                         </div>
                     </div>
                 </header>
 
                 <div class="jumbotron text-center">
-                    <h2>Send us your details if you would like us to contact you</h2>
+                    <h1>Thank you for your interest in our services</h2>
                 </div>
 
-                <div id="fh5co-enquire">
-                    <!-- fh5co- enquire -->
-                    <div class="half-contact">
-                        <div class="container-fluid">
-                            <div class="row">
-                                <div class="col-md-12 animate-box bounceIn">
-                                    <form action="addenquiry.php" method="post">
-                                        <div class="row">
-                                            <div class="col-md-12 form-group">
-                                                <input type="text" name="name" class="form-control" placeholder="Name" required/>
-                                            </div>
-                                            <div class="col-md-12 form-group">
-                                                <input type="text" name="surname" class="form-control" placeholder="Surname" required/>
-                                            </div>
-                                            <div class="col-md-12 form-group">
-                                                <input type="text" name="idnumber" class="form-control" placeholder="Your ID number or Parent's ID number'"
-                                                    required />
-                                            </div>
-                                            <div class="col-md-12 form-group">
-                                                <input type="text" name="phonenumber" class="form-control" placeholder="Phone Number" required/>
-                                            </div>
-                                            <div class="col-md-12 form-group">
-                                                <input type="email" name="email" class="form-control" placeholder="Email Address"/>
-                                            </div>
-                                            <div class="col-md-12 form-group">
-                                                <input type="number" name="grade" min="1" max="12" class="form-control" placeholder="Grade e.g. 7" required/>
-                                            </div>
-                                            <div class="col-md-12 form-group">
-                                                <input type="text" name="location" class="form-control" placeholder="Your Location" required/>
-                                            </div>
-                                            <div class="col-md-12 form-group">
-                                                <select name="codinglevel" id="level" class="form-control" required>
-                                                    <option>-- Coding Level --</option>
-                                                    <option value="novice">novice</option>
-                                                    <option value="beginner">Advanced Beginner</option>
-                                                    <option value="competent">Competent</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-md-12 form-group">
-                                                <select name="sessionday" id="session" class="form-control" required>
-                                                    <option>-- Choose Day for session --</option>
-                                                    <option value="saturday">Saturday</option>
-                                                    <option value="sunday">Sunday</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-md-12 form-group">
-                                                <input type="submit" value="submit enquiry" name="submit" class="form-control btn-success"/>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <center>
+                    <p>We will be in touch with you as soon as we can!</p>
+                    <a class="btn btn-default btn-lg" href="enquire.php">Go back</a>
+                </center>
                 
                 <!-- footer -->
                 <footer>
