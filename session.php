@@ -11,6 +11,7 @@ $row = mysqli_fetch_array($results,MYSQLI_ASSOC);
 $session_userid = $row['id'];
 $session_username = $row['username'];
 $session_username = $row['password'];
+$session_person = $row['person'];
 
 if(!isset($_SESSION['login_user'])){
     header("location:login.php");

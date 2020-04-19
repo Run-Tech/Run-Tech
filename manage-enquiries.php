@@ -250,7 +250,7 @@
                             {
                                 echo '
                                 <div class="well col-md-3" id="stat-bubble" title="The number of learners enrolled">
-                                    <h4 style="color: black;">'.$rows['name']. ' '. $id .'</h4>
+                                    <h4 style="color: black;">'.$rows['name'].'</h4>
                                     <p>Names</p>
                                 </div>
                                 <div class="well col-md-3" id="stat-bubble" title="The number of learners enrolled">
