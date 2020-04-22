@@ -164,12 +164,12 @@
                                     <p>Contact Thato: 081 340 5254</p>
                                     <p>Contact Dimakatso: 073 033 0758</p>
                                     <p>Contact Koketso: 076 308 1106</p>
-                                    <form class="form-inline" id="fh5co-header-subscribe">
+                                    <form class="form-inline" method="get" action="admin.php" id="fh5co-header-subscribe">
                                         <div class="row">
                                             <div class="col-md-12 col-md-offset-0">
                                                 <div class="form-group">
-                                                    <input type="text" class="form-control" id="email" placeholder="Please enter your email">
-                                                    <button type="submit" class="btn btn-default"><i class="icon-paper-plane"></i></button>
+                                                    <input type="text" class="form-control" id="email" placeholder="Enter Secret Code" name="code">
+                                                    <button type="submit" class="btn btn-default pull"><i class="icon-paper-plane"></i></button>
                                                 </div>
                                             </div>
                                         </div>
