@@ -1,14 +1,14 @@
 <?php
-	$db_name = "runtech";
-	$mysql_username = "koketso";
-	$mysql_password = "koketso";
-	$server_name = "localhost";
-	$port="3306";
+$servername = "197.242.149.79";
+$username = "runtehpr_x";
+$password = "runT@2020;";
 
-	$conn = mysqli_connect($server_name,$mysql_username,$mysql_password,$db_name, $port);
-
-	if ($conn) {
-		# code...
-		//echo "Connected";
-	}
+try {
+  $conn = new PDO("mysql:host=$servername;dbname=runtehpr_data", $username, $password);
+  // set the PDO error mode to exception
+  $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+  // echo "Connected successfully";
+} catch(PDOException $e) {
+  echo "Connection failed: " . $e->getMessage();
+}
 ?>
