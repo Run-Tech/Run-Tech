@@ -1,23 +1,17 @@
 <?php
-include 'session.php';
+include 'db_config.php';
 
-$username = $firstname = $middlename = $surname = $idnumber = $email = $phonenumber = $usertype = $password = "";
+$username = $firstname = $middlename = $surname = $idnumber = $email = $phonenumber = $password = "";
 
 $from = $_GET['frm'];
 echo "From: ".$from."<br/>";
 
-if (isset($_GET['userid'])) {
-    # code...
-    $userid = $_GET['userid'];
-    // echo "User ID: ".$userid." is type: ".$_POST['usertype'];
-}
 # if the register button is clicked
 if (isset($_POST['submit']) && (isset($_POST['username']) || isset($_POST['password']))){
 
-    echo $username;
     # prepare and bind
-    $stmt = $conn->prepare("UPDATE user SET username=?, firstname=?, middlename=?, surname=?, password=?, idnumber=?, phone_number=?, email=?, type=? WHERE id ='".$userid."'");
-    $stmt->bind_param("sssssssss", $username, $firstname, $middlename, $surname, $password,  $idnumber, $phonenumber, $email, $usertype);
+    $stmt = $conn->prepare("CALL new_user(?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param("ssssssss", $username, $firstname, $middlename, $surname, $password,  $idnumber, $phonenumber, $email);
 
     # set parameters and execute
     $username = mysqli_real_escape_string($conn, $_POST['username']);
@@ -35,18 +29,16 @@ if (isset($_POST['submit']) && (isset($_POST['username']) || isset($_POST['passw
         $middlename = mysqli_real_escape_string($conn, $_POST['middlename']);
     }
 
-    $usertype = md5(mysqli_real_escape_string($conn, $_POST['usertype']));
-
     $stmt->execute();
-    echo "Records updated successfully";
-    header("location: ".$from.".php?set");
+    //echo "New records created successfully";
+    header("location: ".$from.".php?done");
 
     $stmt->close();
 }
 else
 {
-    //echo "Problem area: ";
     header("location: ".$from.".php?fail");
+    //echo "Problem area: ".mysqli_connnect_error();
 }
 
 $conn-> close();

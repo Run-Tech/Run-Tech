@@ -1,6 +1,10 @@
 <?php
 	include 'session.php';
 	$userix=$session_username;
+	
+	if ($session_usertype === $user_client) {
+		header("location: profile.php?authfail");
+	}
 ?>
 <!DOCTYPE html>
 <html>
@@ -9,7 +13,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- 3 meta tags first; any content *after* these tags -->
-	<title>Announcements | RunTech</title>
+	<title>Announce | RunTech&reg;</title>
 
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -20,11 +24,7 @@
 
 	<style type="text/css">
 		body{
-			/*background-color: goldenrod;*/
-			background-image: url("imgs/books.jpg");
-			/*background-position: center;*/
-			background-attachment: fixed;
-			background-size: 100%;
+			background-color: goldenrod;
 		}
 
 		#messages{
@@ -83,6 +83,7 @@
 
 		#btns {
 			width: 45%;
+			text-align: center;
 		}
 
 		a.close {
@@ -104,7 +105,8 @@
 </head>
 <body>
 <div class="jumbotron text-center">
-	<h1>Here are some announcements</h1>
+	<h1>Make an announcement</h1>
+	<pre>Welcome to the Announcer <?php echo $userix; ?></pre>
 </div>
 <div class="container">
 	<div class="row">
@@ -131,6 +133,7 @@
 		 						<div id="chatbubble-left" class="alert alert-info alert-dismissable fade in">
 		 							<b id="name">'.$user["firstname"].' '.$user["surname"].'</b>
 		 							<p>'.$announcement["announcement"].'</p><span id="time">'.$announcement["date_time"].'</span>
+		 							<a href="delete_announcement.php?id='.$announcement["id"].'" class="close" data-dismiss="alert" aria-label="close"><span class="glyphicon glyphicon-remove" title="remove"></span></a>
 		 						</div>
 		 					</div>';
 				 		}
@@ -144,9 +147,17 @@
 <span id="go"></span>
 <div id="inputarea">
     <form method="POST" id="login-opt" action="announce.php?userix=<?php echo $userix; ?>">
-        <table cellpadding="10" cellspacing="2" style="padding: 10px;">
+        <table cellpadding="10" cellspacing="2" style="padding: 10px;" align="center">
+            <!-- <tr>
+                <td><strong id="creds">Name:</strong></td>
+                <td><input type="text" name="message_by" placeholder="Please enter your Name" style="width: 50%;"></td>
+            </tr> -->
             <tr>
-                <td>
+                <!-- <td><strong>Message:</strong></td> -->
+                <td><textarea cols="150" placeholder="<?php echo 'Write or even code(html/css) the announcement right here, be creative' ?>" name="text" required="true" title="Please make sure you have typed in your message in this area"></textarea></td>
+            </tr>
+            <tr>
+                <td style="text-align: center;"><input id="btns" type="submit" value="Send" class="btn btn-lg btn-success">
                 <input id="btns" type="button" onclick="document.location.href='profile.php'" value="Cancel" class="btn btn-lg btn-danger"></td>
             </tr>
         </table>

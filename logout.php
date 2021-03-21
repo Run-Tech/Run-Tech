@@ -1,7 +1,8 @@
 <?php
-session_start();
+include 'session.php';
 
 if(session_destroy()) {
-    header("Location: mylogin.php");
+    header("Location: mylogin.php?orig=".md5('php'));
+    die();
 }
 ?>
