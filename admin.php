@@ -3,20 +3,26 @@
         # code...
         if ($_GET['code'] === 'myadmin') {
             # code...
-            echo '<p style="color: Green;">Correct combination... redirecting...</p>';
-            sleep(4);
-            header("location: mylogin.php");
+            $result = '<p style="color: limegreen;">Correct combination... redirecting...</p><title>redirecting...</title></p>';
+            header("location: mylogin.php?orig=".md5('php'));
         }else{
-            echo '<p style="color: red;">incorrect combination... redirecting...</p>';
-            sleep(4);
+            $result = '<p style="color: red;">incorrect combination... redirecting...</p><title>redirecting...</title>';
+            sleep(3000);
             header("location: forbidden.html");
         }
     }else{
         header("location: forbidden.html");
     }
 ?>
-<style>
+<html>
+    <head>
+        <style>
+            body {
+                background: black;
+            }
+        </style>
+    </head>
     <body>
-        background: black;
+        <?php echo $result;?>
     </body>
-</style>
+</html>

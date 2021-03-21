@@ -362,7 +362,6 @@ figure {
 #fh5co-primary-menu > li > .sf-with-ul:after {
   border: none !important;
   font-family: 'icomoon';
-  speak: none;
   font-style: normal;
   font-weight: normal;
   font-variant: normal;
@@ -384,7 +383,6 @@ figure {
 #fh5co-primary-menu > li > ul li > .sf-with-ul:after {
   border: none !important;
   font-family: 'icomoon';
-  speak: none;
   font-style: normal;
   font-weight: normal;
   font-variant: normal;
@@ -1360,8 +1358,68 @@ div.cs-select span {
   .row-top-padded-sm {
     padding-top: 2em; } }
 
+.nopadding {
+  padding: 0;
+}
+
+.padding5 {
+  padding: 5px;
+}
+
+.padding10 {
+  padding: 10px;
+}
+
+.padding15 {
+  padding: 15px;
+}
+
+.padding20 {
+  padding: 20px;
+}
+
+.nomargin {
+  margin: 0;
+}
+
+.margin1 {
+  margin: 1px;
+}
+
+.margin5 {
+  margin: 5px;
+}
+
+.margin10 {
+  margin: 10px;
+}
+
+.margin15 {
+  margin: 15px;
+}
+
+.margin20 {
+  margin: 20px;
+}
+
+.border {
+  border: 2px 0px 0px 2px solid grey; }
+
+.border-top {
+  border-top: 1px solid rgba(0, 0, 0, 0.06); }
+
 .border-bottom {
   border-bottom: 1px solid rgba(0, 0, 0, 0.06); }
+
+.border-left {
+  border-left: 1px solid rgba(0, 0, 0, 0.06); }
+
+.border-right {
+  border-right: 1px solid rgba(0, 0, 0, 0.06); }
+
+.shade {
+  box-shadow: 0 0 10px 10px gray;
+}
 
 .lead {
   line-height: 1.8; }
@@ -1389,6 +1447,10 @@ div.cs-select span {
 /* Custom styling for the website */
 .text-orange {
   color: darkorange;
+}
+
+.orange-bg {
+  background-color: darkorange;
 }
 
 .sf-menu li:hover {
