@@ -1,16 +1,16 @@
 <?php
-    include 'db_config.php';
+    include 'session.php';
 
-    $sql = "SELECT * FROM runtech.enquiry ORDER BY enquiry.idenquiry;";
-
-	$result = $conn->query($sql);
+	if ($session_usertype === $user_client) {
+		header("location: profile.php?authfail");
+	}
 ?>
 <!DOCTYPE html>
 <html>
 	<head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>RunTech&reg;</title>
+	<title>EMD | RunTech&reg;</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
@@ -44,7 +44,10 @@
 	<!-- FOR IE9 below -->
 	<!--[if lt IE 9]>
 	<script src="js/respond.min.js"></script>
-	<![endif]-->
+    <![endif]-->
+    
+    <!-- Place your kit's code here -->
+    <script src="https://kit.fontawesome.com/f58590e004.js" crossorigin="anonymous"></script>
 
     <style type="text/css">
         body{
@@ -97,6 +100,10 @@
 
         p {
             margin: 0px;
+        }
+
+        p.clients {
+            cursor: pointer;
         }
 
         b {
@@ -217,12 +224,19 @@
             .clients {
                 height: 50px;
             }
+
+            .clients p b {
+                cursor: pointer;
+            }
         }
     </style>
     </head>
     <body>
 
         <div id="container">
+            <span style="font-size: 48px; color: darkorange; position: absolute; z-index: 1; top: 0;">
+                    <i class="fas fa-arrow-alt-circle-left" onclick="document.location.href='profile.php'"></i>
+                </span>
             <div class="page-heading text-center" style="color: green;">
                 <h3><b>Enquiries Management Dashboard</b></h3>
             </div>
@@ -231,8 +245,13 @@
                     <h3 style="text-align: center; background-color: orange; border-radius: 5px; padding: 5px; color: green;">Clients who want to learn programming</h3>
                     <div class="clients">
                         <?php
-                            while ($row = $result->fetch_assoc()) {
-                                echo '<p class="clients" onclick="document.location.href=\'manage-enquiries.php?id='.$row['idenquiry'].'\'"><b>'.$row['name'].' '.$row['surname'].'</b></p><hr>';
+                            $users = $conn->query("SELECT * FROM enquiry ORDER BY name");
+                            if($users->rowCount()<=0){
+                                echo '<p class="clients"><b>No Enquiries Yet</b></p><hr>';
+                            } else {
+                                while ($user = $users->fetch(PDO::FETCH_ASSOC)) {
+                                    echo '<p class="clients" onclick="document.location.href=\'manage-enquiries.php?id='.$row['idenquiry'].'\'"><b>'.$row['name'].' '.$row['surname'].'</b></p><hr>';
+                                }
                             }
                         ?>
                     </div>
@@ -243,59 +262,60 @@
                         <?php if (isset($_GET['id'])) {
                             # do the following
                             $id = $_GET['id'];
-                            $ssql = "SELECT * FROM runtech.enquiry WHERE enquiry.idenquiry=".$id;
-                            $resultss = $conn -> query($ssql);
+                            $enquiries = $conn->query("SELECT * FROM enquiry WHERE idenquiry=".$id);
                             
-                            if($rows = $resultss->fetch_assoc())
+                            if($enquiries->rowCount() <= 0)
                             {
-                                echo '
-                                <div class="well col-md-3" id="stat-bubble" title="The number of learners enrolled">
-                                    <h4 style="color: black;">'.$rows['name'].'</h4>
-                                    <p>Names</p>
-                                </div>
-                                <div class="well col-md-3" id="stat-bubble" title="The number of learners enrolled">
-                                    <h4 style="color: black;">'.$rows['surname'].'</h4>
-                                    <p>Surname</p>
-                                </div>
-                                <div class="well col-md-3" id="stat-bubble" title="The number of learners enrolled">
-                                    <h4 style="color: black;">'.$rows['idnumber'].'</h4>
-                                    <p>Identity Number</p>
-                                </div>
-                                <div class="well col-md-3" id="stat-bubble" title="The number of learners enrolled">
-                                    <h4 style="color: black;">'.$rows['phonenumber'].'</h4>
-                                    <p>Phone Number</p>
-                                </div>
-                                <div class="well col-md-3" id="stat-bubble" title="The number of learners enrolled">
-                                    <h4 style="color: black;">'.$rows['grade'].'</h4>
-                                    <p>Grade</p>
-                                </div>
-                                <div class="well col-md-3" id="stat-bubble" title="The number of learners enrolled">
-                                    <h4 style="color: black;">'.$rows['location'].'</h4>
-                                    <p>Location</p>
-                                </div>
-                                <div class="well col-md-3" id="stat-bubble" title="The number of learners enrolled">
-                                    <h4 style="color: black;">'.$rows['codinglevel'].'</h4>
-                                    <p>Coding Level</p>
-                                </div>
-                                <div class="well col-md-3" id="stat-bubble" title="The number of learners enrolled">
-                                    <h4 style="color: black;">'.$rows['sessionday'].'</h4>
-                                    <p>Session Day</p>
-                                </div>
-                                <div class="well col-md-3" id="stat-bubble" title="The number of learners enrolled">
-                                    <h4 style="color: black;">'.$rows['statustype'].'</h4>
-                                    <p>Status</p>
-                                </div>
-                                <div class="well col-md-3" id="stat-bubble" title="The number of learners enrolled">
-                                    <h4 style="color: black;">'.$rows['email'].'</h4>
-                                    <p>Email</p>
-                                </div>
-                                <div class="well col-md-3" id="stat-bubble" title="The number of learners enrolled">
-                                    <h4 style="color: black;">Edit<i class="glyphicon glyphicon-facebook"></i></h4>
-                                    <p>Modify Details</p>
-                                </div>';
+                                echo '<center><p>Enquiries Management Dashboard</p></center>';
+                            } else {
+                                if ($enquiry = $enquiries->fetch(PDO::FETCH_ASSOC)) {
+                                    echo '
+                                    <div class="well col-md-3" id="stat-bubble" title="The number of learners enrolled">
+                                        <h4 style="color: black;">'.$enquiry['name'].'</h4>
+                                        <p>Names</p>
+                                    </div>
+                                    <div class="well col-md-3" id="stat-bubble" title="The number of learners enrolled">
+                                        <h4 style="color: black;">'.$enquiry['surname'].'</h4>
+                                        <p>Surname</p>
+                                    </div>
+                                    <div class="well col-md-3" id="stat-bubble" title="The number of learners enrolled">
+                                        <h4 style="color: black;">'.$enquiry['idnumber'].'</h4>
+                                        <p>Identity Number</p>
+                                    </div>
+                                    <div class="well col-md-3" id="stat-bubble" title="The number of learners enrolled">
+                                        <h4 style="color: black;">'.$enquiry['phonenumber'].'</h4>
+                                        <p>Phone Number</p>
+                                    </div>
+                                    <div class="well col-md-3" id="stat-bubble" title="The number of learners enrolled">
+                                        <h4 style="color: black;">'.$enquiry['grade'].'</h4>
+                                        <p>Grade</p>
+                                    </div>
+                                    <div class="well col-md-3" id="stat-bubble" title="The number of learners enrolled">
+                                        <h4 style="color: black;">'.$enquiry['location'].'</h4>
+                                        <p>Location</p>
+                                    </div>
+                                    <div class="well col-md-3" id="stat-bubble" title="The number of learners enrolled">
+                                        <h4 style="color: black;">'.$enquiry['codinglevel'].'</h4>
+                                        <p>Coding Level</p>
+                                    </div>
+                                    <div class="well col-md-3" id="stat-bubble" title="The number of learners enrolled">
+                                        <h4 style="color: black;">'.$enquiry['sessionday'].'</h4>
+                                        <p>Session Day</p>
+                                    </div>
+                                    <div class="well col-md-3" id="stat-bubble" title="The number of learners enrolled">
+                                        <h4 style="color: black;">'.$enquiry['statustype'].'</h4>
+                                        <p>Status</p>
+                                    </div>
+                                    <div class="well col-md-3" id="stat-bubble" title="The number of learners enrolled">
+                                        <h4 style="color: black;">'.$enquiry['email'].'</h4>
+                                        <p>Email</p>
+                                    </div>
+                                    <div class="well col-md-3" id="stat-bubble" title="The number of learners enrolled">
+                                        <h4 style="color: black;">Edit<i class="glyphicon glyphicon-facebook"></i></h4>
+                                        <p>Modify Details</p>
+                                    </div>';
+                                }
                             }
-                        }else {
-                            echo '<center><p>Enquiries Management Dashboard</p></center>';
                         }
                         ?>
                     </div>

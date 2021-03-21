@@ -1,0 +1,94 @@
+import java.util.Scanner;
+
+public class WordWars
+{
+    public static void main(String[] args)
+    {
+        System.out.println("\fWelcome to the WORD WARS game. \n\nPress (1) to start the game.\n");
+        
+        System.out.print("Press any other key to exit the game. \nEnter your selection: ");
+        
+        Scanner game = new Scanner(System.in);
+        int start = game.nextInt();
+        
+        Scanner scan = new Scanner(System.in);
+        if (start == 1)
+        {
+            
+            for (int playcount = 5; playcount > 0; playcount--)
+            {
+                System.out.println("***********************************************");
+                System.out.print("Enter player 1 name: ");
+                String player1 = scan.nextLine();
+                System.out.print("Enter player 2 name: ");
+                String player2 = scan.nextLine();
+                System.out.println("\n\n\nLETS PLAY WORD WARS!!!");
+                
+                int scoreP1 = 0, scoreP2 = 0;
+                
+                char[] alphabet = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o',
+                                       'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
+                
+                System.out.print("Alphabet letters left: ");
+                for (char character : alphabet)
+                {
+                    System.out.print(character + " ");
+                }
+                
+                //actual game
+                Scanner play1 = new Scanner(System.in);
+                Scanner play2 = new Scanner(System.in);
+                
+                boolean stopgame = false;
+                String winner = null;
+                int winning_score = 0;
+                
+                System.out.print("\n" + player1 + " enter your word: ");
+                String word = play1.nextLine();
+                while (!word.equalsIgnoreCase("???") && !stopgame)
+                {
+                    System.out.println("Enter (y) yes if both players agree on the word: ");
+                    char check1 = play1.nextLine().charAt(0);
+                    if (check1 == 'y' || check1 == 'Y')
+                        scoreP1 = scoreP1 + word.length();
+                        
+                    System.out.print(player2 + " enter your word: ");
+                    word = play2.nextLine();
+                    System.out.println("Enter (y) yes if both players agree on the word: ");
+                    char check2 = play2.nextLine().charAt(0);
+                    if (check2 == 'y' || check2 == 'Y')
+                        scoreP2 = scoreP2 + word.length();
+                        
+                    System.out.print(player1 + " enter your word: ");
+                    word = play1.nextLine();
+                }
+                
+                if (scoreP1 > scoreP2)
+                {
+                    winner = player1;
+                    winning_score = scoreP1;
+                } 
+                else 
+                {
+                    winner = player2;
+                    winning_score = scoreP2;
+                }
+                System.out.println("\fWINNER OF THE GAME IS: " + winner + " with a score of: " + winning_score);
+                System.out.println("YOUR NAME HAS BEEN SAVED TO T HE HALL OF FAME!!!");
+                System.out.println("THE GAME IS NOW OVER. THANK YOU FOR PLAYING WORD WARS!!!");
+                
+                
+                System.out.println("\nWould you like to play again? Yes or No (y/n)...");
+                Scanner end = new Scanner(System.in);
+                char answer = end.nextLine().charAt(0);
+                if (answer == 'n' || answer == 'N')
+                {
+                    break;
+                }
+            }
+        }else{
+            System.out.print("GAME TERMINATED...|");
+            System.exit(0);
+        }
+    }
+}

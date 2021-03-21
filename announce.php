@@ -2,32 +2,25 @@
 
 include 'session.php';
 
-if (isset($_POST['text'])) {
+$text = $_POST['text'];
+$timedate = date('Y-m-d H:i:s');
 
-    if (!$conn) {
-        die("Connection failed: " . mysqli_connect_errno());
-    }
-
+if (empty($text)) {
+    header("location: announcement.php?err1");
+    die();
+} else {
     // prepare and bind
     $stmt = $conn->prepare("INSERT INTO announcement (announcer, announcement, date_time) VALUES (?, ?, ?)");
-    $stmt->bind_param("sss", $session_userid, $text, $timedate);
+    $res=$stmt->execute([$session_userid, $text, $timedate]);
 
-    // set parameters and execute
-    $text = $_POST['text'];
-    $timedate = date('Y-m-d H:i:s');
-
-    $stmt->execute();
-
-    echo "New records created successfully";
-    header("location:announcement.php#go");
-
-    $stmt->close();
+    // echo "New records created successfully";
+    if ($res)
+        header("location:announcement.php#go");
+    else
+        header("location:announcement.php#no");
+    die();
+    $conn = null;
+    exit;
 }
-else{
-    echo "Something went wrong here, type something in the textarea please.";
-}
-
-$conn->close();
-
 ?>
 
